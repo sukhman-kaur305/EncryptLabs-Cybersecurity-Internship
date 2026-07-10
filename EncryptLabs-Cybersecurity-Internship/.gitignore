@@ -1,0 +1,24 @@
+# AWS credentials - NEVER commit these
+.aws/
+*.pem
+credentials
+config
+aws_credentials*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Temp files
+*.tmp
+*.log
+~$*
+
+# Compressed evidence (optional - remove this line if you DO want zips tracked)
+# *.zip
