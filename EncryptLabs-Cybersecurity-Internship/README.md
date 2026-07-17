@@ -12,7 +12,7 @@ assigned phases, evidence, and final reports.
 | Week | Topic | Status |
 |------|-------|--------|
 | [Week 1](./Week1_Cloud-Security-Shared-Responsibility) | AWS Shared Responsibility Model | ✅ Completed |
-| Week 2 | TBD | ⏳ In Progress |
+| Week 2 |(./Week2_AWS-Account-Hardening-Homelab) | AWS Account Hardening & Homelab | ✅ Completed |
 | Week 3 | TBD | ⏳ Pending |
 
 ## 🛠️ Tools Commonly Used
