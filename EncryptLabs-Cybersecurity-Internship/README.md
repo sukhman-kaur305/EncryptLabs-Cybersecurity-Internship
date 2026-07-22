@@ -13,7 +13,7 @@ assigned phases, evidence, and final reports.
 |------|-------|--------|
 | [Week 1](./Week1_Cloud-Security-Shared-Responsibility) | AWS Shared Responsibility Model | ✅ Completed |
 | Week 2 |(./Week2_AWS-Account-Hardening-Homelab) | AWS Account Hardening & Homelab | ✅ Completed |
-| Week 3 | TBD | ⏳ Pending |
+| [Week 3](./Week3-AWS-CLI-Security) | AWS CLI Security | ✅ Completed |
 
 ## 🛠️ Tools Commonly Used
 AWS Free Tier, AWS CLI, Draw.io, Excel/Sheets, Claude AI, TryHackMe, PwnedLabs
