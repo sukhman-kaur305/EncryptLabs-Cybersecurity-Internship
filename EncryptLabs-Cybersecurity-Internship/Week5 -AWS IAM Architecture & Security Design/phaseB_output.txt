@@ -1,0 +1,49 @@
+~ $ aws iam get-user --user-name intern_user
+{
+    "User": {
+        "Path": "/",
+        "UserName": "intern_user",
+        "UserId": "AIDA5VAX2ZKEFE6HUIR5J",
+        "Arn": "arn:aws:iam::938500344456:user/intern_user",
+        "CreateDate": "2026-08-05T20:19:51+00:00"
+    }
+}
+~ $ aws iam list-attached-group-policies --group-name intern_group
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "AmazonS3ReadOnlyAccess",
+            "PolicyArn": "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+        }
+    ]
+}
+~ $ aws iam list-group-policies --group-name intern_group
+{
+    "PolicyNames": [
+        "EC2DescribeInstances"
+    ]
+}
+~ $ aws iam get-role --role-name intern_role
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "intern_role",
+        "RoleId": "AROA5VAX2ZKEBJJTGNBE2",
+        "Arn": "arn:aws:iam::938500344456:role/intern_role",
+        "CreateDate": "2026-08-05T20:26:21+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "ec2.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows EC2 instances to call AWS services on your behalf.",
+        "MaxSessionDuration": 3600,
+        "RoleLastUsed": {}
+    }

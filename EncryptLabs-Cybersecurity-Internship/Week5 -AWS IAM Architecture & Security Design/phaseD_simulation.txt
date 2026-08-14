@@ -1,0 +1,50 @@
+~ $ aws iam simulate-principal-policy \
+>   --policy-source-arn arn:aws:iam::938500344456:user/intern_user \
+>   --action-names s3:GetObject \
+>   --resource-arns arn:aws:s3:::my-homelab-trail/test.txt
+{
+    "EvaluationResults": [
+        {
+            "EvalActionName": "s3:GetObject",
+            "EvalResourceName": "arn:aws:s3:::my-homelab-trail/test.txt",
+            "EvalDecision": "allowed",
+            "MatchedStatements": [
+                {
+                    "SourcePolicyId": "group_intern_group_S3LeastPrivilegePolicy",
+                    "SourcePolicyType": "IAM Policy",
+                    "StartPosition": {
+                        "Line": 9,
+                        "Column": 6
+                    },
+                    "EndPosition": {
+                        "Line": 15,
+                        "Column": 6
+                    }
+                }
+            ],
+            "MissingContextValues": [],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+                {
+                    "EvalResourceName": "arn:aws:s3:::my-homelab-trail/test.txt",
+                    "EvalResourceDecision": "allowed",
+                    "MatchedStatements": [
+                        {
+                            "SourcePolicyId": "group_intern_group_S3LeastPrivilegePolicy",
+                            "SourcePolicyType": "IAM Policy",
+                            "StartPosition": {
+                                "Line": 9,
+                                "Column": 6
+                            },
+                            "EndPosition": {
+                                "Line": 15,
+                                "Column": 6
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+(END)

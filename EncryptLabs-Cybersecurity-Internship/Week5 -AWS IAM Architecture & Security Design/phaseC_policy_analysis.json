@@ -1,0 +1,76 @@
+{
+  "assessment": {
+    "title": "AWS IAM Policy Analysis",
+    "environment": "AWS IAM Security Homelab",
+    "account_id": "938500344456",
+    "analysis_date": "2026-08-05"
+  },
+  "enumeration": {
+    "user": {
+      "user_name": "intern_user",
+      "user_id": "AIDA5VAX2ZKEFE6HUIR5J",
+      "arn": "arn:aws:iam::938500344456:user/intern_user",
+      "group": "intern_group"
+    },
+    "group": {
+      "group_name": "intern_group",
+      "arn": "arn:aws:iam::938500344456:group/intern_group",
+      "attached_managed_policy": {
+        "name": "AmazonS3ReadOnlyAccess",
+        "arn": "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+      },
+      "inline_policy": "EC2DescribeInstances"
+    },
+    "role": {
+      "role_name": "intern_role",
+      "role_id": "AROA5VAX2ZKEBJJTGNBE2",
+      "arn": "arn:aws:iam::938500344456:role/intern_role",
+      "trusted_service": "ec2.amazonaws.com"
+    }
+  },
+  "findings": [
+    {
+      "entity": "intern_group",
+      "policy_name": "AmazonS3ReadOnlyAccess",
+      "risk_level": "Medium",
+      "finding": "Managed policy provides broader S3 read permissions than required for the lab.",
+      "recommendation": "Replace with a custom policy limited to the my-homelab-trail bucket."
+    },
+    {
+      "entity": "intern_group",
+      "policy_name": "EC2DescribeInstances",
+      "risk_level": "Low",
+      "finding": "Only the ec2:DescribeInstances action is allowed. Resource '*' is required for this API.",
+      "recommendation": "Keep this least-privilege read-only permission."
+    },
+    {
+      "entity": "intern_role",
+      "policy_name": "AssumeRole Trust Policy",
+      "risk_level": "Low",
+      "finding": "Only the EC2 service principal is trusted to assume the role.",
+      "recommendation": "Review trust relationships periodically and enable CloudTrail monitoring."
+    }
+  ],
+  "recommended_policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "ListBucket",
+        "Effect": "Allow",
+        "Action": "s3:ListBucket",
+        "Resource": "arn:aws:s3:::my-homelab-trail"
+      },
+      {
+        "Sid": "ReadObjects",
+        "Effect": "Allow",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::my-homelab-trail/*"
+      }
+    ]
+  },
+  "summary": {
+    "overall_risk": "Medium",
+    "highest_priority": "Scope S3 access to the lab bucket only.",
+    "bucket": "my-homelab-trail"
+  }
+}
