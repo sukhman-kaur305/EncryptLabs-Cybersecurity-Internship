@@ -1,0 +1,46 @@
+Phase A – IAM Enumeration Fundamentals
+
+Objective: The objective of Phase A was to understand AWS IAM
+enumeration and how IAM users, roles, trust policies, and permission
+policies interact.
+
+Activities Performed: I used AWS CLI IAM enumeration commands to
+identify users, roles, and policies within the authorized AWS lab
+environment.
+
+Commands reviewed/executed included: - aws iam list-users - aws iam
+list-roles - aws iam list-policies - IAM policy/role inspection commands
+
+Findings: The list-users command successfully identified multiple IAM
+users, including contractor-veeam, detective-user, and dev01.
+
+The list-roles command revealed IAM roles such as
+AWSCloudFormationStackSetExecutionRole. Examination of the role
+information also displayed its AssumeRolePolicyDocument. This
+demonstrated how a role’s trust policy specifies which principals are
+allowed to call sts:AssumeRole.
+
+The policy enumeration evidence also showed an AttachedPolicies value of
+[], indicating that the queried IAM identity did not have managed
+policies attached at that level. However, this alone does not prove that
+the identity has no permissions because permissions may also be provided
+through inline policies, groups, roles, or other applicable AWS
+authorization mechanisms.
+
+Security Relevance: IAM enumeration allows a security analyst to
+understand the identities and authorization relationships present in an
+AWS account. In an authorized penetration test, the same information can
+be examined for excessive permissions, weak trust relationships, and
+possible privilege-escalation paths.
+
+Explicit vs. Implicit Permissions: An explicit Allow occurs when an
+applicable policy specifically permits an AWS action. An implicit deny
+occurs when no applicable Allow grants the requested action. An explicit
+Deny specifically denies an action and generally takes precedence over
+an Allow.
+
+Conclusion: Phase A demonstrated that AWS IAM enumeration provides
+important information about users, roles, policies, and trust
+relationships. Understanding these relationships is essential for
+identifying IAM misconfigurations and potential privilege-escalation
+risks.

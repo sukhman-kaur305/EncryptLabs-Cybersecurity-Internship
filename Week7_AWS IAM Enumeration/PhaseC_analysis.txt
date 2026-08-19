@@ -1,0 +1,45 @@
+cat > analysis.txt <<'EOF'
+Phase C - IAM Enumeration and Permission Analysis
+
+Policy Analyzed:
+privesc9-AttachRolePolicy
+
+Policy Action:
+iam:AttachRolePolicy
+
+Effect:
+Allow
+
+Resource:
+*
+
+Finding:
+The analyzed IAM policy permits the iam:AttachRolePolicy action against all resources. The wildcard resource indicates that the permission is not restricted to a specific IAM role.
+
+Security Risk:
+This permission represents a potential privilege-escalation risk. If an identity is able to attach an overly privileged managed policy to a role that it or another accessible workload can use, the effective privileges available through that role could be increased.
+
+Risk Rating:
+High
+
+Recommended Mitigation:
+Apply the principle of least privilege. Restrict iam:AttachRolePolicy to specifically approved IAM role ARNs and control which managed policies may be attached. IAM permissions and role trust relationships should also be reviewed regularly for excessive access.
+
+Enumeration Findings:
+AWS CLI enumeration successfully identified IAM users, groups, policies, and roles in the lab environment. Multiple roles related to privilege-escalation testing were identified.
+
+Trust Relationship Analysis:
+IAM role trust policies were reviewed using aws iam get-role and the AssumeRolePolicyDocument. Trust policies determine which principals are permitted to assume IAM roles through sts:AssumeRole.
+
+Tool Observation:
+Steampipe was installed, but its SQL query could not execute because the embedded PostgreSQL database installation failed in the AWS CloudShell environment. AWS CLI role enumeration was used as an alternative.
+
+The Policy Sentry command specified in the lab instructions was also attempted. The installed Policy Sentry version did not provide the 'analyze' subcommand, returning "No such command 'analyze'." The exported IAM policy was therefore reviewed manually and the findings were documented in this analysis file.
+
+Conclusion:
+The assessment identified iam:AttachRolePolicy with Resource "*" as the primary high-risk permission examined. Restricting policy attachment permissions and enforcing least privilege would reduce the potential for IAM privilege escalation.
+EOF
+ 
+
+
+
